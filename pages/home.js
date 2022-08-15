@@ -1,12 +1,12 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
+import Navbar from "../components/HomeNav";
+import HomeHero from "../components/HomeHero";
 
 const Home = ({ Web3Handler, account }) => {
   return (
     <>
       <Navbar account={account} />
-      <Hero Web3Handler={Web3Handler} />
+      <HomeHero Web3Handler={Web3Handler} />
     </>
   );
 };

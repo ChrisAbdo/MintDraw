@@ -228,6 +228,10 @@ const Canvas = () => {
                       Download{" "}
                     </button>
                   </a>
+                  <button className="btn btn-ghost btn-outline mt-2">
+                    {" "}
+                    Mint to OpenSea
+                  </button>
                 </li>
               </ul>
             </div>

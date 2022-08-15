@@ -4,7 +4,7 @@ import { useEffect } from "react";
 // Import external dependencies
 import { themeChange } from "theme-change";
 
-const Navbar = ({ Web3Handler, account }) => {
+const HomeNav = ({ Web3Handler, account }) => {
   const themeValues = [
     "Dark",
     "Cupcake",
@@ -35,7 +35,7 @@ const Navbar = ({ Web3Handler, account }) => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a href="/home" className="btn btn-ghost normal-case text-xl ">
+        <a href="/" className="btn btn-ghost normal-case text-xl ">
           MintDraw🌿
         </a>
       </div>
@@ -733,41 +733,10 @@ const Navbar = ({ Web3Handler, account }) => {
           </div>
         </div>
 
-        <div className="dropdown dropdown-end">
-          {account ? (
-            <div className="navbar-end">
-              <div className="dropdown dropdown-end">
-                <label tabIndex="0" className="btn btn-ghost btn-outline">
-                  {account.slice(0, 5) + "..." + account.slice(38, 42)}
-                </label>
-
-                <ul
-                  tabIndex="0"
-                  className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
-                >
-                  <li>
-                    <a>Disconnect Wallet</a>
-                  </li>
-                  <li>
-                    <a>PLACEHOLDER</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <div className="navbar-end">
-              <button
-                onClick={Web3Handler}
-                className="btn btn-ghost btn-outline"
-              >
-                Connect Wallet
-              </button>
-            </div>
-          )}
-        </div>
+        <div className="dropdown dropdown-end"></div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default HomeNav;
