@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar";
 
 // Import external dependencies
 import Web3 from "web3";
+import Hero from "../components/Hero";
+import Canvas from "../components/Canvas";
 
 const Home = () => {
   // Initialize state variables
@@ -60,6 +62,14 @@ const Home = () => {
       </Head>
 
       <Navbar account={account} Web3Handler={Web3Handler} />
+
+      {account ? (
+        <div>
+          <Canvas account={account} />
+        </div>
+      ) : (
+        <Hero Web3Handler={Web3Handler} />
+      )}
     </>
   );
 };
