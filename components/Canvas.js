@@ -1,9 +1,6 @@
 import styles from "../styles/Canvas.module.css";
 
-import { useEffect, useState } from "react";
-
-import Web3 from "web3";
-import Land from "../build/contracts/Land.json";
+import { useEffect } from "react";
 
 const Canvas = () => {
   useEffect(() => {

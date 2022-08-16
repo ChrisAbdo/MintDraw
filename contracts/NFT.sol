@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
-contract Migrations {
-    address public owner = msg.sender;
-    uint256 public last_completed_migration;
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-    modifier restricted() {
-        require(
-            msg.sender == owner,
-            "This function is restricted to the contract's owner"
-        );
-        _;
-    }
+contract NFT is ERC721URIStorage {
+    uint256 public tokenCount;
 
-    function setCompleted(uint256 completed) public restricted {
-        last_completed_migration = completed;
+    constructor() ERC721("DApp NFT", "DAPP") {}
+
+    function mint(string memory _tokenURI) external returns (uint256) {
+        tokenCount++;
+        _safeMint(msg.sender, tokenCount);
+        _setTokenURI(tokenCount, _tokenURI);
+        return (tokenCount);
     }
 }
