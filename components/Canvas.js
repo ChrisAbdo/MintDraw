@@ -1,13 +1,11 @@
 import styles from "../styles/Canvas.module.css";
+
 import { useEffect, useState } from "react";
 
+import Web3 from "web3";
+import Land from "../build/contracts/Land.json";
+
 const Canvas = () => {
-  //   const [canvas, setCanvas] = useState(false);
-
-  //   function canvasAppear() {
-  //     setCanvas(true);
-  //   }
-
   useEffect(() => {
     const colorpicker = document.getElementById("colorpicker");
     const sizepicker = document.getElementById("sizepicker");
@@ -129,79 +127,35 @@ const Canvas = () => {
 
   return (
     <>
-      {/* <div className="bg-[#161516]">
-        <div className="flex justify-center items-center" id="resoPicker">
-          <h3 className="flex"> Choose Canvas Dimensions</h3>
-          <label for="widthPicker"> Size </label>
-          <input
-            type="number"
-            id="widthPicker"
-            name="width"
-            class="resoPicker__input"
-            placeholder="Width"
-          />
-          <input
-            type="number"
-            id="heightPicker"
-            name="height"
-            class="resoPicker__input"
-            placeholder="Height"
-          />
-          <button type="submit" class="resoPicker__submit" id="submitReso">
-            {" "}
-            CREATE{" "}
-          </button>
-        </div>
-
-        <nav className={styles.nav}>
-          <label for="color"> COLOR </label>
-          <input type="color" id="colorpicker" />
-
-          <label for="sizepicker"> BRUSH SIZE </label>
-          <input type="number" id="sizepicker" min="1" max="20" value="1" />
-
-          <a href="" id="downloadLink" download="image.png">
-            <button id="saveButton" download="image.png">
-              {" "}
-              SAVE{" "}
-            </button>
-          </a>
-        </nav>
-
-        <div class="drawingBoard">
-          <canvas id="board"></canvas>
-        </div>
-
-        <script src="script.js" async defer></script>
-      </div> */}
       <div className="hero min-h-screen bg-base-200 grid  ">
         <div className="hero-content text-center">
           {/* / */}
-          <div class="drawer drawer-mobile  min-h-screen ">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col items-center justify-center">
+          <div className="drawer drawer-mobile  min-h-screen ">
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content flex flex-col items-center justify-center">
               <label
-                for="my-drawer-2"
-                class="btn btn-primary drawer-button lg:hidden"
+                htmlFor="my-drawer-2"
+                className="btn btn-primary drawer-button lg:hidden"
               >
                 Open drawer
               </label>
             </div>
 
-            {/* only make this div appear after submitting button */}
-
-            <div class="inline-block drawer-side">
-              <label for="my-drawer-2" class="drawer-overlay"></label>
-              <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+            <div className="inline-block drawer-side">
+              <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+              <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                 <li>
-                  <label className="cursor-default mb-2" for="color">
+                  <label className="cursor-default mb-2" htmlFor="color">
                     {" "}
                     COLOR &darr;
                   </label>
 
                   <input type="color" id="colorpicker" />
 
-                  <label for="sizepicker" className="cursor-default mb-2 mt-2">
+                  <label
+                    htmlFor="sizepicker"
+                    className="cursor-default mb-2 mt-2"
+                  >
                     {" "}
                     BRUSH SIZE{" "}
                   </label>
@@ -213,7 +167,7 @@ const Canvas = () => {
                     max="20"
                     // value="1"
                     // set initial value to 1
-                    value="1"
+                    defaultValue="1"
                     className="border"
                   />
 
@@ -228,7 +182,10 @@ const Canvas = () => {
                       Download{" "}
                     </button>
                   </a>
-                  <button className="btn btn-ghost btn-outline mt-2">
+                  <button
+                    onClick={() => buyHandler(landId)}
+                    className="btn btn-ghost btn-outline mt-2"
+                  >
                     {" "}
                     Mint to OpenSea
                   </button>
@@ -265,21 +222,6 @@ const Canvas = () => {
               CREATE
             </button>
           </div>
-
-          {/* <nav className="nav">
-            <label for="color"> COLOR </label>
-            <input type="color" id="colorpicker" />
-
-            <label for="sizepicker"> BRUSH SIZE </label>
-            <input type="number" id="sizepicker" min="1" max="20" value="1" />
-
-            <a href="" id="downloadLink" download="image.png">
-              <button id="saveButton" download="image.png">
-                {" "}
-                SAVE{" "}
-              </button>
-            </a>
-          </nav> */}
 
           <div className={styles.board}>
             <canvas className="border" id="board"></canvas>
